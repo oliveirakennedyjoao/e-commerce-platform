@@ -1,0 +1,26 @@
+{
+  "name": "e-shop-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/e-shop-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/e-shop-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "e-shop:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "e-shop:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["e-shop"]
+}

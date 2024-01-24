@@ -1,0 +1,58 @@
+{
+  "name": "e-shop",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/e-shop",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/e-shop"
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "apps/e-shop"
+        },
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "e-shop:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "e-shop:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "e-shop:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nx/next:export",
+      "options": {
+        "buildTarget": "e-shop:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/e-shop/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": []
+}
