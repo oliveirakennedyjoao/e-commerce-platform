@@ -1,4 +1,5 @@
-import './global.css';
+import 'tailwindcss/tailwind.css';
+import SidebarLayout from '../components/sidebar-layout';
 
 export const metadata = {
   title: 'Welcome to e-shop',
@@ -12,7 +13,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <SidebarLayout>{children}</SidebarLayout>
+        <div className="bg-gray-50"> <span className="block">Ready to dive in?</span></div>
+        <div className="bg-indigo-500 p-2 font-mono">Hello!</div>
+      </body>
     </html>
   );
 }
